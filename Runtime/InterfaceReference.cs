@@ -52,7 +52,13 @@ namespace WhiteArrow
         public InterfaceReference(UObject target) => _underlyingValue = target;
         public InterfaceReference(TInterface @interface) => _underlyingValue = @interface as UObject;
 
-        public static implicit operator TInterface(InterfaceReference<TInterface, UObject> obj) => obj.Value;
+        public static implicit operator TInterface(InterfaceReference<TInterface, UObject> obj)
+        {
+            if (obj == null)
+                return null;
+
+            return obj.Value;
+        }
     }
 
     /// <summary>
